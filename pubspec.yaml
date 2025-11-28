@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   dio: ^5.9.0
   google_fonts: ^6.3.2
+  stroke_text: ^1.0.0
 
 dev_dependencies:
   flutter_test:

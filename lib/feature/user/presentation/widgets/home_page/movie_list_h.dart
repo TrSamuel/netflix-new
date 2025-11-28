@@ -16,7 +16,7 @@ class MovieListH extends StatelessWidget {
             padding: const .only(left: 8),
             child: Text(
               "Your Next Watch",
-              style: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+              style: TextStyle(fontSize: AppfontSizes.large, fontWeight: .w900),
             ),
           ),
           SingleChildScrollView(
