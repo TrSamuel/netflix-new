@@ -26,6 +26,10 @@ class AppTheme {
       selectedItemColor: AppColors.white,
       unselectedItemColor: AppColors.grey,
     ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.black,
+      foregroundColor: AppColors.white,
+    ),
   );
 
   static TextStyle buildThemeTxtStyle() => TextStyle(color: AppColors.white);
