@@ -9,7 +9,7 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .all(8.0),
         child: Image.asset('assets/logo/netflixlogo.png'),
       ),
       actions: [
