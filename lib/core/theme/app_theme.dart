@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 
 class AppTheme {
@@ -32,5 +33,5 @@ class AppTheme {
     ),
   );
 
-  static TextStyle buildThemeTxtStyle() => TextStyle(color: AppColors.white);
+  static TextStyle buildThemeTxtStyle() => GoogleFonts.lato(color: AppColors.white);
 }

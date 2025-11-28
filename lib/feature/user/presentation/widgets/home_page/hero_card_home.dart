@@ -1,35 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
+import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_page/hero_card_h_action_button.dart';
 
 class HeroCardHome extends StatelessWidget {
-  const HeroCardHome({
-    super.key,
-    required this.size,
-  });
+  const HeroCardHome({super.key, required this.size});
 
   final Size size;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(15),
-      ),
-      child: Container(
-        width: size.width * 0.9,
-        height: 500,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(
-              'https://image.tmdb.org/t/p/original/6QlAcGRaUrgHcZ4WTBh5lsPnzKx.jpg',
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Stack(
+        alignment: .bottomCenter,
+        children: [
+          Container(
+            width: size.width * 0.9,
+            height: 500,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: .cover,
+                image: NetworkImage(
+                  TestAppconst.img,
+                ),
+              ),
+              color: TestAppconst.widgetTestcolor,
+              borderRadius: .circular(15),
+              border: .all(width: 0.5, color: AppColors.white, style: .solid),
+              shape: .rectangle,
             ),
           ),
-          color: AppColors.widgetTestcolor,
-          borderRadius: .circular(15),
-          border: .all(width: 0.5, color: AppColors.white, style: .solid),
-          shape: BoxShape.rectangle,
-        ),
+          SizedBox(
+            width: size.width * 0.9,
+            height: 100,
+            child: Row(
+              mainAxisAlignment: .spaceEvenly,
+              children: [
+                HeroCardHActionButton(
+                  bgColor: AppColors.white,
+                  fgColor: AppColors.black,
+                  icon: Icons.play_arrow,
+                  label: 'Play',
+                ),
+                HeroCardHActionButton(
+                  bgColor: AppColors.greyBtn,
+                  fgColor: AppColors.white,
+                  icon: Icons.add,
+                  label: 'My List',
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
