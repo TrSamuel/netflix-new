@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_theme.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/new_hot_tab_bar_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/pages/home_page.dart';
 import 'package:netflixclonenew/feature/user/presentation/pages/mynetflix_page.dart';
 import 'package:netflixclonenew/feature/user/presentation/pages/newhot_page.dart';
@@ -13,8 +14,11 @@ class NetflixApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BottomnavCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => BottomnavCubit()),
+        BlocProvider(create: (context) => NewHotTabBarCubit()),
+      ],
       child: MaterialApp(
         theme: AppTheme.data,
         debugShowCheckedModeBanner: false,

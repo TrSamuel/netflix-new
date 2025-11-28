@@ -19,6 +19,8 @@ class HomePage extends StatelessWidget {
             MovieListH(),
             MovieListH(),
             MovielistTop10h(),
+            MovieListH(),
+            MovieListH(),
           ]),
         ),
       ],

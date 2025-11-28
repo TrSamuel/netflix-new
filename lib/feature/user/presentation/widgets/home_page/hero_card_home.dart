@@ -19,16 +19,29 @@ class HeroCardHome extends StatelessWidget {
             width: size.width * 0.9,
             height: 500,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: .cover,
-                image: NetworkImage(
-                  TestAppconst.img,
-                ),
-              ),
-              color: TestAppconst.widgetTestcolor,
               borderRadius: .circular(15),
               border: .all(width: 0.5, color: AppColors.white, style: .solid),
-              shape: .rectangle,
+            ),
+            child: ClipRRect(
+              borderRadius: .circular(15),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Image.network(TestAppconst.img, fit: BoxFit.cover),
+                  ),
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment(0, 0.2),
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, AppColors.transparentBlack],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
