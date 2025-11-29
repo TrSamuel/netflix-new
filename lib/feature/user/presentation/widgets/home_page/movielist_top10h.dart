@@ -31,7 +31,7 @@ class MovielistTop10h extends StatelessWidget {
                   child: Stack(
                     alignment: .bottomLeft,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 100,
                         height: 85,
                         child: StrokeText(
@@ -53,7 +53,7 @@ class MovielistTop10h extends StatelessWidget {
                             borderRadius: .circular(3),
                             image: DecorationImage(
                               fit: .cover,
-                              image: NetworkImage(TestAppconst.img),
+                              image: NetworkImage(TestAppconst.posterPath),
                             ),
                           ),
                         ),

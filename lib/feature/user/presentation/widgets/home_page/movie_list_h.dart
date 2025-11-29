@@ -32,7 +32,7 @@ class MovieListH extends StatelessWidget {
                       borderRadius: .circular(3),
                       image: DecorationImage(
                         fit: .cover,
-                        image: NetworkImage(TestAppconst.img),
+                        image: NetworkImage(TestAppconst.posterPath),
                       ),
                     ),
                   ),

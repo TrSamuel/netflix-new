@@ -27,7 +27,7 @@ class HeroCardHome extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: Image.network(TestAppconst.img, fit: BoxFit.cover),
+                    child: Image.network(TestAppconst.posterPath, fit: BoxFit.cover),
                   ),
                   Positioned.fill(
                     child: Container(

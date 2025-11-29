@@ -31,6 +31,7 @@ class AppTheme {
       backgroundColor: AppColors.black,
       foregroundColor: AppColors.white,
     ),
+    iconTheme: IconThemeData(color: AppColors.white)
   );
 
   static TextStyle buildThemeTxtStyle() => GoogleFonts.lato(color: AppColors.white);
