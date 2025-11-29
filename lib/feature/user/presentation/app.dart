@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_theme.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/new_hot_tab_bar_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/pages/home_page.dart';
 import 'package:netflixclonenew/feature/user/presentation/pages/mynetflix_page.dart';
@@ -18,6 +19,7 @@ class NetflixApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => BottomnavCubit()),
         BlocProvider(create: (context) => NewHotTabBarCubit()),
+        BlocProvider(create: (context) => DowloadsViewCubit()),
       ],
       child: MaterialApp(
         theme: AppTheme.data,
@@ -29,6 +31,9 @@ class NetflixApp extends StatelessWidget {
               currentIndex: index,
               onTap: (newIndex) {
                 context.read<BottomnavCubit>().changeindex(newIndex);
+                if (newIndex == 2) {
+                  context.read<DowloadsViewCubit>().closeDownloads();
+                }
               },
               type: BottomNavigationBarType.fixed,
               items: [

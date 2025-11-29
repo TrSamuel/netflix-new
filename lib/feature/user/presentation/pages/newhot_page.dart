@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
-import 'package:netflixclonenew/feature/user/presentation/widgets/newhot_page/comingSoon/coming_soon.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/new_hot_tab_bar_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/newhot_page/coming_soon/coming_soon.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/newhot_page/everyone_watch/everyones_watch.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/newhot_page/new_hot_app_bar.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/newhot_page/top10_show_movie.dart';
 
 class NewhotPage extends StatelessWidget {
   const NewhotPage({super.key});
@@ -12,22 +15,20 @@ class NewhotPage extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         NewHotAppBar(size: size),
-        SliverList(
-          delegate: SliverChildListDelegate([
-            IndexedStack(index: 1, children: [ComingSoon(size: size),
-            Column(
-              children: [
-                Container(
-                  width: size.width,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    image: DecorationImage(image: NetworkImage(TestAppconst.backdropPath))),
-                ),
-              ],
-            )
-            ]),
-          ]),
+        SliverFillRemaining(
+          child: BlocBuilder<NewHotTabBarCubit, int>(
+            builder: (context, index) {
+              return IndexedStack(
+                index: index,
+                children: [
+                  ComingSoon(size: size),
+                  EveryonesWatch(size: size),
+                  Top10ShowMovie(size: size),
+                  Top10ShowMovie(size: size),
+                ],
+              );
+            },
+          ),
         ),
       ],
     );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({
-    super.key,
-  });
+  const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,14 @@ class HomeAppBar extends StatelessWidget {
         child: Image.asset('assets/logo/netflixlogo.png'),
       ),
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.download)),
+        IconButton(
+          onPressed: () {
+            context
+              ..read<BottomnavCubit>().changeindex(2)
+              ..read<DowloadsViewCubit>().openDowloads();
+          },
+          icon: Icon(Icons.download),
+        ),
         IconButton(onPressed: () {}, icon: Icon(Icons.search)),
       ],
     );

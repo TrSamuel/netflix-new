@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
+import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/new_hot_tab_bar_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/newhot_page/bottom_tab_bar_new_hot.dart';
 
 class NewHotAppBar extends StatelessWidget {
-  const NewHotAppBar({
-    super.key,
-    required this.size,
-  });
+  const NewHotAppBar({super.key, required this.size});
 
   final Size size;
 
@@ -26,7 +25,12 @@ class NewHotAppBar extends StatelessWidget {
       ),
       title: Text("New & Hot"),
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.download)),
+        IconButton(
+          onPressed: () {
+            context.read<BottomnavCubit>().changeindex(2);
+          },
+          icon: Icon(Icons.download),
+        ),
         IconButton(onPressed: () {}, icon: Icon(Icons.search)),
       ],
       bottom: PreferredSize(

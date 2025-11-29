@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
+import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class AppTheme {
   static ThemeData data = ThemeData(
@@ -31,8 +32,25 @@ class AppTheme {
       backgroundColor: AppColors.black,
       foregroundColor: AppColors.white,
     ),
-    iconTheme: IconThemeData(color: AppColors.white)
-  );
+    iconTheme: IconThemeData(color: AppColors.white),
+    textButtonTheme: TextButtonThemeData(
 
-  static TextStyle buildThemeTxtStyle() => GoogleFonts.lato(color: AppColors.white);
+      style: TextButton.styleFrom(
+        iconSize: 20,
+        foregroundColor: AppColors.white,
+        textStyle: TextStyle(fontSize: AppfontSizes.mediumSmall),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shape: LinearBorder(),
+        iconSize: 20,
+        foregroundColor: AppColors.black,
+        backgroundColor: AppColors.white,
+        textStyle: TextStyle(fontSize: AppfontSizes.medium),
+      ),
+    ),
+  );
+  static TextStyle buildThemeTxtStyle() =>
+      GoogleFonts.lato(color: AppColors.white);
 }
