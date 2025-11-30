@@ -6,6 +6,7 @@ import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 class AppTheme {
   static ThemeData data = ThemeData(
     scaffoldBackgroundColor: AppColors.black,
+    canvasColor: AppColors.black,
     textTheme: TextTheme(
       bodyLarge: buildThemeTxtStyle(),
       bodyMedium: buildThemeTxtStyle(),
@@ -34,7 +35,6 @@ class AppTheme {
     ),
     iconTheme: IconThemeData(color: AppColors.white),
     textButtonTheme: TextButtonThemeData(
-
       style: TextButton.styleFrom(
         iconSize: 20,
         foregroundColor: AppColors.white,
@@ -43,14 +43,24 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        shape: LinearBorder(),
         iconSize: 20,
         foregroundColor: AppColors.black,
         backgroundColor: AppColors.white,
         textStyle: TextStyle(fontSize: AppfontSizes.medium),
       ),
     ),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: AppColors.white,selectionHandleColor: Colors.blueAccent),
+    searchBarTheme: SearchBarThemeData(
+      textStyle: WidgetStatePropertyAll(TextStyle(color: AppColors.white)),
+    
+      backgroundColor: WidgetStatePropertyAll(AppColors.darkGrey),
+      shape: WidgetStatePropertyAll(LinearBorder()),
+      hintStyle: WidgetStatePropertyAll(
+        TextStyle(color: AppColors.grey, fontSize: AppfontSizes.mediumLarge),
+      ),
+    ),
   );
+
   static TextStyle buildThemeTxtStyle() =>
       GoogleFonts.lato(color: AppColors.white);
 }

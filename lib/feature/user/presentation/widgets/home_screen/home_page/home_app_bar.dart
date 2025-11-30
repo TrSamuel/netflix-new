@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixclonenew/core/theme/app_colors.dart';
+import 'package:netflixclonenew/core/utils/navigator_page.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/screens/search_screen/search_screen.dart';
+
+class HomeAppBar extends StatelessWidget {
+  const HomeAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      pinned: true,
+      floating: false,
+      expandedHeight: 80,
+      backgroundColor: AppColors.transparentBlack,
+      leading: Padding(
+        padding: const .all(8.0),
+        child: Image.asset('assets/logo/netflixlogo.png'),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            context
+              ..read<BottomnavCubit>().changeindex(2)
+              ..read<DowloadsViewCubit>().openDowloads();
+          },
+          icon: Icon(Icons.download),
+        ),
+        IconButton(onPressed: () {
+          NavigatorPage.goTo(SearchScreen(), context);
+        }, icon: Icon(Icons.search)),
+      ],
+    );
+  }
+}
