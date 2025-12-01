@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 
 class PlayButton extends StatelessWidget {
-  const PlayButton({
-    super.key,
-  });
+  const PlayButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +16,10 @@ class PlayButton extends StatelessWidget {
             height: 30,
             decoration: BoxDecoration(
               borderRadius: .circular(500),
-              border: Border.all(color: AppColors.grey,width: 0.8)
+              border: Border.all(color: AppColors.grey, width: 0.8),
             ),
           ),
-          Icon(Icons.play_arrow)
+          Icon(Icons.play_arrow),
         ],
       ),
     );

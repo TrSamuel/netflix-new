@@ -27,7 +27,10 @@ class HeroCardHome extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: Image.network(TestAppconst.posterPath, fit: BoxFit.cover),
+                    child: Image.network(
+                      TestAppconst.posterPath,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   Positioned.fill(
                     child: Container(
@@ -35,7 +38,10 @@ class HeroCardHome extends StatelessWidget {
                         gradient: LinearGradient(
                           begin: Alignment(0, 0.2),
                           end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, AppColors.transparentBlack],
+                          colors: [
+                            Colors.transparent,
+                            AppColors.transparentBlack,
+                          ],
                         ),
                       ),
                     ),

@@ -12,6 +12,11 @@ class ActionButtonComing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [Icon(icon), Text(label,style: TextStyle(color: AppColors.grey),)]);
+    return Column(
+      children: [
+        Icon(icon),
+        Text(label, style: TextStyle(color: AppColors.grey)),
+      ],
+    );
   }
 }

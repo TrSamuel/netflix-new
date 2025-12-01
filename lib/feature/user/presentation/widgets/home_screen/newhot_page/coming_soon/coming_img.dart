@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ComingImg extends StatelessWidget {
-  const ComingImg({
-    super.key,
-  });
+  const ComingImg({super.key});
 
   @override
   Widget build(BuildContext context) {

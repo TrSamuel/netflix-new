@@ -9,7 +9,10 @@ class Top10ShowMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: List.generate(10, (index) =>  Top10ItemNewHot(size: size,index: index,),)
+        children: List.generate(
+          10,
+          (index) => Top10ItemNewHot(size: size, index: index),
+        ),
       ),
     );
   }

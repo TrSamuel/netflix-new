@@ -1,14 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DowloadsViewCubit extends Cubit<bool>{
-  DowloadsViewCubit():super(false);
+class DowloadsViewCubit extends Cubit<bool> {
+  DowloadsViewCubit() : super(false);
 
-  void openDowloads(){
+  void openDowloads() {
     emit(true);
   }
 
-  void closeDownloads(){
+  void closeDownloads() {
     emit(false);
   }
-  
 }

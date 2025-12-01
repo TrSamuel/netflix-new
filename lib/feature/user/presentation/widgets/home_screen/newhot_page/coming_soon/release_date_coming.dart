@@ -3,10 +3,7 @@ import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class ReleaseDateComing extends StatelessWidget {
-  const ReleaseDateComing({
-    super.key,
-    required this.size,
-  });
+  const ReleaseDateComing({super.key, required this.size});
 
   final Size size;
 
@@ -19,7 +16,10 @@ class ReleaseDateComing extends StatelessWidget {
         children: [
           Text(
             "DEC",
-            style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.grey),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColors.grey,
+            ),
           ),
           Text(
             "25",

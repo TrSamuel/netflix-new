@@ -26,7 +26,8 @@ class LikeItemsMyNetflix extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8),
             child: SingleChildScrollView(
               scrollDirection: .horizontal,
-              child: Row(children: List.generate(10, (index) => ImageItem()))),
+              child: Row(children: List.generate(10, (index) => ImageItem())),
+            ),
           ),
         ],
       ),

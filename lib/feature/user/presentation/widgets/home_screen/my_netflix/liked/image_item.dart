@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
 
- class ImageItem extends StatelessWidget {
+class ImageItem extends StatelessWidget {
   const ImageItem({super.key});
 
   @override
@@ -15,7 +15,10 @@ import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
             width: 100,
             height: 150,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(topLeft: .circular(5),topRight: .circular(5)),
+              borderRadius: BorderRadius.only(
+                topLeft: .circular(5),
+                topRight: .circular(5),
+              ),
               image: DecorationImage(
                 fit: .cover,
                 image: NetworkImage(TestAppconst.posterPath),

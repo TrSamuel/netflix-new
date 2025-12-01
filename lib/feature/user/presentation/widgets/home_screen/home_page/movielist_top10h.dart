@@ -37,7 +37,10 @@ class MovielistTop10h extends StatelessWidget {
                         child: StrokeText(
                           text: '${index + 1}',
                           strokeColor: AppColors.white,
-                          textStyle: GoogleFonts.oswald(fontSize: 10,fontWeight: FontWeight.bold),
+                          textStyle: GoogleFonts.oswald(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
                           maxLines: 1,
                           textAlign: TextAlign.start,
                           strokeWidth: 2,

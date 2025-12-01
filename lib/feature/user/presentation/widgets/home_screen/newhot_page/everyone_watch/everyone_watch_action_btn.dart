@@ -17,7 +17,7 @@ class EveryoneWatchActionBtn extends StatelessWidget {
       child: Column(
         children: [
           Icon(icon),
-          SizedBox(height: 8 ),
+          SizedBox(height: 8),
           Text(label, style: TextStyle(color: AppColors.grey)),
         ],
       ),

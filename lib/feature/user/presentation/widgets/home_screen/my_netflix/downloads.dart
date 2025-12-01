@@ -18,7 +18,7 @@ class Downloads extends StatelessWidget {
             foregroundColor: AppColors.black,
             child: Icon(Icons.download, size: 105),
           ),
-          
+
           SizedBox(height: 40),
           Text(
             "Movies and TV shows that\nyou download appear here",
@@ -29,9 +29,7 @@ class Downloads extends StatelessWidget {
           ),
           SizedBox(height: 100),
           ElevatedButton(
-            style:  ElevatedButton.styleFrom(
-            shape: LinearBorder()
-            ),
+            style: ElevatedButton.styleFrom(shape: LinearBorder()),
             onPressed: () {},
             child: Text(
               "Find Something to Download",

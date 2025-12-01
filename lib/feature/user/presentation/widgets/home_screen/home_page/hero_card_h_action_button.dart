@@ -17,7 +17,6 @@ class HeroCardHActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      
       style: ElevatedButton.styleFrom(
         padding: .symmetric(horizontal: 35),
         shape: RoundedRectangleBorder(borderRadius: .circular(5)),
@@ -25,7 +24,13 @@ class HeroCardHActionButton extends StatelessWidget {
         foregroundColor: fgColor,
       ),
       onPressed: () {},
-      label: Text(label,style: TextStyle(fontSize: AppfontSizes.medium,fontWeight: FontWeight.bold),),
+      label: Text(
+        label,
+        style: TextStyle(
+          fontSize: AppfontSizes.medium,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       icon: Icon(icon),
     );
   }

@@ -4,10 +4,7 @@ import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/ne
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/title_and_actions.dart';
 
 class Top10ItemNewHot extends StatelessWidget {
-  const Top10ItemNewHot({
-    super.key,
-    required this.size, required this.index,
-  });
+  const Top10ItemNewHot({super.key, required this.size, required this.index});
 
   final Size size;
   final int index;
@@ -15,8 +12,7 @@ class Top10ItemNewHot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const .only(bottom: 18)
-      ,
+      padding: const .only(bottom: 18),
       child: Row(
         crossAxisAlignment: .start,
         children: [
@@ -24,7 +20,7 @@ class Top10ItemNewHot extends StatelessWidget {
             width: size.width * 0.2,
             height: 300,
             child: Text(
-              "${index+1}",
+              "${index + 1}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: AppfontSizes.xLarge,

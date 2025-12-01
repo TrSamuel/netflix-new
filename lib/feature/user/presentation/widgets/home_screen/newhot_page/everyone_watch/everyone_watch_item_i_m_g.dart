@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
 
 class EveryoneWatchItemIMG extends StatelessWidget {
-  const EveryoneWatchItemIMG({
-    super.key,
-    required this.size,
-  });
+  const EveryoneWatchItemIMG({super.key, required this.size});
 
   final Size size;
 

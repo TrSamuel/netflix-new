@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyNetFlixIcon extends StatelessWidget {
-  const MyNetFlixIcon({
-    super.key,
-  });
+  const MyNetFlixIcon({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,9 +3,7 @@ import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my_netflix/liked_my_list_item_list.dart';
 
 class MyList extends StatelessWidget {
-  const MyList({
-    super.key,
-  });
+  const MyList({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,10 +4,7 @@ import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/ne
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/title_and_actions.dart';
 
 class MovieItemEveryonesWatch extends StatelessWidget {
-  const MovieItemEveryonesWatch({
-    super.key,
-    required this.size,
-  });
+  const MovieItemEveryonesWatch({super.key, required this.size});
 
   final Size size;
 

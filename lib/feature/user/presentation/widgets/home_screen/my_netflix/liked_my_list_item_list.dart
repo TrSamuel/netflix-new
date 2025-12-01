@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
 
 class LikedMyListItemList extends StatelessWidget {
-  const LikedMyListItemList({
-    super.key,
-  });
+  const LikedMyListItemList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +25,7 @@ class LikedMyListItemList extends StatelessWidget {
                   ),
                   image: DecorationImage(
                     fit: .cover,
-                    image: NetworkImage(
-                      TestAppconst.posterPath,
-                    ),
+                    image: NetworkImage(TestAppconst.posterPath),
                   ),
                 ),
               ),

@@ -26,7 +26,7 @@ class AppBarMyNetflix extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-                      NavigatorPage.goTo(SearchScreen(), context);
+              NavigatorPage.goTo(SearchScreen(), context);
             },
             icon: Icon(Icons.search),
           ),

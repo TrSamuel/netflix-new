@@ -5,18 +5,13 @@ import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my_netflix/favor.dart';
 
 class FavorAndDownlods extends StatelessWidget {
-  const FavorAndDownlods({
-    super.key,
-  });
+  const FavorAndDownlods({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SliverFillRemaining(
-      child: BlocBuilder<DowloadsViewCubit,bool>(
-        builder: (context, isDownloads) =>
-        isDownloads?
-        Downloads()
-        : Favor(),
+      child: BlocBuilder<DowloadsViewCubit, bool>(
+        builder: (context, isDownloads) => isDownloads ? Downloads() : Favor(),
       ),
     );
   }

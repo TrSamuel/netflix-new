@@ -49,10 +49,13 @@ class AppTheme {
         textStyle: TextStyle(fontSize: AppfontSizes.medium),
       ),
     ),
-    textSelectionTheme: TextSelectionThemeData(cursorColor: AppColors.white,selectionHandleColor: Colors.blueAccent),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.white,
+      selectionHandleColor: Colors.blueAccent,
+    ),
     searchBarTheme: SearchBarThemeData(
       textStyle: WidgetStatePropertyAll(TextStyle(color: AppColors.white)),
-    
+
       backgroundColor: WidgetStatePropertyAll(AppColors.darkGrey),
       shape: WidgetStatePropertyAll(LinearBorder()),
       hintStyle: WidgetStatePropertyAll(

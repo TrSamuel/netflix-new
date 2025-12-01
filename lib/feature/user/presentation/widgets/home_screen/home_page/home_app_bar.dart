@@ -29,9 +29,12 @@ class HomeAppBar extends StatelessWidget {
           },
           icon: Icon(Icons.download),
         ),
-        IconButton(onPressed: () {
-          NavigatorPage.goTo(SearchScreen(), context);
-        }, icon: Icon(Icons.search)),
+        IconButton(
+          onPressed: () {
+            NavigatorPage.goTo(SearchScreen(), context);
+          },
+          icon: Icon(Icons.search),
+        ),
       ],
     );
   }

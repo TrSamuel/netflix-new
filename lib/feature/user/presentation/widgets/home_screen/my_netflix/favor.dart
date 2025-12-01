@@ -6,9 +6,7 @@ import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my_netflix/my_net_flix_icon.dart';
 
 class Favor extends StatelessWidget {
-  const Favor({
-    super.key,
-  });
+  const Favor({super.key});
 
   @override
   Widget build(BuildContext context) {

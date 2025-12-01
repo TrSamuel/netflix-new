@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BottomnavCubit,int>(
+    return BlocBuilder<BottomnavCubit, int>(
       builder: (context, index) {
         return Scaffold(
           body: IndexedStack(index: index, children: pages),

@@ -35,9 +35,12 @@ class NewHotAppBar extends StatelessWidget {
           },
           icon: Icon(Icons.download),
         ),
-        IconButton(onPressed: () {
-        NavigatorPage.goTo(SearchScreen(), context);
-        }, icon: Icon(Icons.search)),
+        IconButton(
+          onPressed: () {
+            NavigatorPage.goTo(SearchScreen(), context);
+          },
+          icon: Icon(Icons.search),
+        ),
       ],
       bottom: PreferredSize(
         preferredSize: Size(size.width, 60),
