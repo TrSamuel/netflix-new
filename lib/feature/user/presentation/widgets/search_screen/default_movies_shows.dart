@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/search_screen/default_i_m_gof_list.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/search_screen/movie_show_name.dart';

@@ -7,7 +7,7 @@ class Downloads extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: .end,
@@ -18,6 +18,7 @@ class Downloads extends StatelessWidget {
             foregroundColor: AppColors.black,
             child: Icon(Icons.download, size: 105),
           ),
+          
           SizedBox(height: 40),
           Text(
             "Movies and TV shows that\nyou download appear here",
