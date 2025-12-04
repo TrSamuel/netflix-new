@@ -1,15 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:netflixclonenew/core/api/api_const.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/hero_card_h_action_button.dart';
 
 class HeroCardHome extends StatelessWidget {
-  const HeroCardHome({super.key, required this.size});
+  final List<Movie>? movies;
+  const HeroCardHome({super.key, required this.size, required this.movies});
 
   final Size size;
 
   @override
   Widget build(BuildContext context) {
+    Movie? movie;
+    if (movies != null && movies!.isNotEmpty) {
+      movie = movies!.first;
+    }
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Stack(
@@ -27,8 +35,10 @@ class HeroCardHome extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: Image.network(
-                      TestAppconst.posterPath,
+                    child: CachedNetworkImage(
+                      imageUrl: movie != null
+                          ? '${ApiConst.imgUrl}/${movie.posterPath}'
+                          : TestAppconst.posterPath,
                       fit: BoxFit.cover,
                     ),
                   ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclonenew/feature/user/presentation/app.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/screens/home_screen/pages/home_page.dart';
+import 'package:netflixclonenew/feature/user/presentation/screens/home_screen/pages/mynetflix_page.dart';
+import 'package:netflixclonenew/feature/user/presentation/screens/home_screen/pages/newhot_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +14,10 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<BottomnavCubit, int>(
       builder: (context, index) {
         return Scaffold(
-          body: IndexedStack(index: index, children: pages),
+          body: IndexedStack(
+            index: index,
+            children: [HomePage(), NewhotPage(), MynetflixPage()],
+          ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             onTap: (newIndex) {

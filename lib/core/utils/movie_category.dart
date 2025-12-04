@@ -4,5 +4,5 @@ enum MovieCategory {
   topRated,
   upcoming,
   trendingDay,
-  trendingWeek
+  trendingWeek,
 }

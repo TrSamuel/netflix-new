@@ -8,4 +8,5 @@ class AppColors {
   static const darkGrey = Color.fromARGB(255, 31, 31, 31);
   static const greyBtn = Color.fromARGB(255, 76, 76, 76);
   static const transparentBlack = Color.fromARGB(197, 0, 0, 0);
+  static const shimmerLoaderColor = Color.fromARGB(255, 28, 28, 28);
 }

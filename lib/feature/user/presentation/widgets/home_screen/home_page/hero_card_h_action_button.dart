@@ -3,13 +3,13 @@ import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class HeroCardHActionButton extends StatelessWidget {
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final Color fgColor;
   final Color bgColor;
   const HeroCardHActionButton({
     super.key,
     required this.label,
-    required this.icon,
+    this.icon,
     required this.fgColor,
     required this.bgColor,
   });
@@ -31,7 +31,7 @@ class HeroCardHActionButton extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      icon: Icon(icon),
+      icon: icon != null ? Icon(icon) : null,
     );
   }
 }
