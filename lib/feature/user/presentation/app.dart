@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_theme.dart';
 import 'package:netflixclonenew/feature/user/data/repositories/movierepo_imp.dart';
+import 'package:netflixclonenew/feature/user/data/repositories/tvshowrepo_imp.dart';
+import 'package:netflixclonenew/feature/user/data/source/remote/movie_api_service.dart';
+import 'package:netflixclonenew/feature/user/data/source/remote/tvshow_api_service.dart';
 import 'package:netflixclonenew/feature/user/domain/repositories/movie_repo.dart';
+import 'package:netflixclonenew/feature/user/domain/repositories/tvshow_repo.dart';
 import 'package:netflixclonenew/feature/user/domain/usecases/get_movies.dart';
-import 'package:netflixclonenew/feature/user/presentation/bloc/movie_bloc/movie_bloc.dart';
+import 'package:netflixclonenew/feature/user/domain/usecases/get_tvshows.dart';
+import 'package:netflixclonenew/feature/user/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
@@ -18,7 +23,14 @@ class NetflixApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<MovieRepo>(create: (context) => MovierepoImp()),
+        RepositoryProvider<MovieRepo>(
+          create: (context) =>
+              MovierepoImp(movieService: MovieApiService.instance),
+        ),
+        RepositoryProvider<TvshowRepo>(
+          create: (context) =>
+              TvshowrepoImp(tvshowService: TvshowApiService.instance),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -27,9 +39,10 @@ class NetflixApp extends StatelessWidget {
           BlocProvider(create: (context) => DowloadsViewCubit()),
           BlocProvider(create: (context) => SearchBloc()),
           BlocProvider(
-            create: (context) => MovieBloc(
+            create: (context) => HomeBloc(
               getMovies: GetMovies(movieRepo: context.read<MovieRepo>()),
-            )..add(LoadMoviesEvent()),
+              getTvshows: GetTvshows(tvshowRepo: context.read<TvshowRepo>()),
+            ),
           ),
         ],
         child: MaterialApp(

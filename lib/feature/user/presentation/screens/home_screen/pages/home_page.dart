@@ -1,35 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
+import 'package:netflixclonenew/core/utils/tvshow_category.dart';
 import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
-import 'package:netflixclonenew/feature/user/presentation/bloc/movie_bloc/movie_bloc.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
+import 'package:netflixclonenew/feature/user/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/hero_card_home.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/home_app_bar.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/movie_list_h.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/movielist_top10h.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/tvshow_list_h.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/tvshowlist_top10h.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/shimmer_loaders/shimmer_loader_home_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(GetHomeItemsEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    return BlocBuilder<MovieBloc, MovieBlocState>(
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) {
+        if (current is HomeLoading) return true;
+        if (previous is HomeLoading && current is HomeLoaded) return true;
+
+        return false;
+      },
       builder: (context, state) {
-        if (state == MoviesLoading()) {
+        if (state is HomeLoading) {
           return ShimmerLoaderHomePage();
         }
-        if (state == MovieBlocInitial() || state == MoviesFailure()) {
+        if (state is! HomeLoaded) {
           return SizedBox.shrink();
         }
-        final Map<MovieCategory, List<Movie>> movies =
-            (state as MoviesSuccess).movies;
+        final Map<MovieCategory, List<Movie>> movies = state.movies;
+        final Map<TvshowCategory, List<Tvshow>> tvShows = state.tvShows;
         return CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             HomeAppBar(),
             SliverList(
-              delegate: SliverChildBuilderDelegate(childCount: 6, (
+              delegate: SliverChildBuilderDelegate(childCount: 13, (
                 context,
                 index,
               ) {
@@ -38,30 +60,54 @@ class HomePage extends StatelessWidget {
                     size: size,
                     movies: movies[MovieCategory.trendingDay],
                   ),
+                  TvshowListH(
+                    label: 'Popular TV Shows',
+                    tvShows: tvShows[TvshowCategory.popular],
+                  ),
                   MovieListH(
                     movies: movies[MovieCategory.nowPlaying],
-                    title: 'Now playing movies',
+                    label: 'Now playing movies',
                   ),
-
-                  MovieListH(
-                    movies: movies[MovieCategory.trendingWeek],
-                    title: 'Trending week movies',
-                  ),
-                  MovieListH(
-                    movies: movies[MovieCategory.topRated],
-                    title: 'Top rated movies',
+                  TvshowListH(
+                    label: 'Trending TV Shows Today',
+                    tvShows: tvShows[TvshowCategory.trendingDay],
                   ),
                   MovielistTop10h(
                     label: 'Top 10 Popular Movies',
                     movies: movies[MovieCategory.popular],
                   ),
+
+                  MovieListH(
+                    movies: movies[MovieCategory.trendingWeek],
+                    label: 'Trending week movies',
+                  ),
+                  TvshowlistTop10h(
+                    label: 'TV Shows Airing Today',
+                    tvShows: tvShows[TvshowCategory.airingToday],
+                  ),
+                  MovieListH(
+                    movies: movies[MovieCategory.topRated],
+                    label: 'Top rated movies',
+                  ),
+                  TvshowListH(
+                    label: 'Top Rated TV Shows',
+                    tvShows: tvShows[TvshowCategory.topRated],
+                  ),
                   MovielistTop10h(
                     label: 'Top 10 Trending day Movies',
                     movies: movies[MovieCategory.trendingDay],
                   ),
+                  TvshowlistTop10h(
+                    label: 'Top 10 on the Air Shows',
+                    tvShows: tvShows[TvshowCategory.onTheAir],
+                  ),
                   MovieListH(
                     movies: movies[MovieCategory.upcoming],
-                    title: 'Upcoming movies',
+                    label: 'Upcoming movies',
+                  ),
+                  TvshowlistTop10h(
+                    label: 'Top 10 Weekly Trending TV Shows',
+                    tvShows: tvShows[TvshowCategory.trendingWeek],
                   ),
                 ];
 

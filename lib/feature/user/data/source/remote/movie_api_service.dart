@@ -5,16 +5,22 @@ import 'package:netflixclonenew/core/api/dio_client.dart';
 import 'package:netflixclonenew/core/errors/main_failure.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/feature/user/data/model/movie_model/movie_model.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
 
-class MovieApiService {
+sealed class MovieService {
+  Future<Either<MainFailure, List<MovieModel>>> getMovies(
+    MovieCategory category,
+  );
+}
+
+final class MovieApiService extends MovieService {
   MovieApiService.internal();
   static MovieApiService instance = MovieApiService.internal();
   factory MovieApiService() => instance;
 
   final Dio dio = DioClient.instance.dio;
 
-  Future<Either<MainFailure, List<Movie>>> getMovies(
+  @override
+  Future<Either<MainFailure, List<MovieModel>>> getMovies(
     MovieCategory category,
   ) async {
     try {

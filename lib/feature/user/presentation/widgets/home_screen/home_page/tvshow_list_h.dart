@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/api/api_const.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
 
-class MovieListH extends StatelessWidget {
+class TvshowListH extends StatelessWidget {
   final String label;
-  final List<Movie>? movies;
-  const MovieListH({super.key, required this.label, required this.movies});
+  final List<Tvshow>? tvShows;
+  const TvshowListH({super.key, required this.label, required this.tvShows});
 
   @override
   Widget build(BuildContext context) {
-    if (movies == null || movies!.isEmpty) {
+    if (tvShows == null || tvShows!.isEmpty) {
       return SizedBox.shrink();
     }
     return Padding(
@@ -31,9 +31,9 @@ class MovieListH extends StatelessWidget {
             height: 160,
             child: ListView.builder(
               scrollDirection: .horizontal,
-              itemCount: movies!.length,
+              itemCount: tvShows!.length,
               itemBuilder: (context, index) {
-                final movie = movies![index];
+                final movie = tvShows![index];
                 return Padding(
                   padding: const .all(5.0),
                   child: ClipRRect(

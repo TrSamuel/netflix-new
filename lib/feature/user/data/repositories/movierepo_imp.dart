@@ -6,7 +6,9 @@ import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
 import 'package:netflixclonenew/feature/user/domain/repositories/movie_repo.dart';
 
 class MovierepoImp extends MovieRepo {
-  final movieService = MovieApiService.instance;
+  final MovieService movieService;
+
+  MovierepoImp({required this.movieService});
   @override
   Future<Either<MainFailure,List<Movie>>> geMovies(MovieCategory category) async =>
       await movieService.getMovies(category);
