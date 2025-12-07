@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/dowloads_view_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/screens/home_screen/pages/home_page.dart';
 import 'package:netflixclonenew/feature/user/presentation/screens/home_screen/pages/mynetflix_page.dart';
 import 'package:netflixclonenew/feature/user/presentation/screens/home_screen/pages/newhot_page.dart';

@@ -3,7 +3,9 @@ import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/everyone_watch/everyone_watch_action_btn.dart';
 
 class TitleAndActions extends StatelessWidget {
-  const TitleAndActions({super.key});
+  final double titleWidth;
+  final String title;
+  const TitleAndActions({super.key, required this.title, required this.titleWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +13,13 @@ class TitleAndActions extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
-          Text(
-            "Title",
-            style: TextStyle(
-              fontSize: AppfontSizes.large,
-              fontWeight: FontWeight.bold,
+          SizedBox(
+            width: titleWidth,
+            child: Text(
+              maxLines: 2,
+              overflow: .ellipsis,
+              title,
+              style: TextStyle(fontSize: AppfontSizes.large, fontWeight: FontWeight.bold),
             ),
           ),
           Spacer(),

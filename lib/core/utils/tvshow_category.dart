@@ -5,4 +5,5 @@ enum  TvshowCategory {
   airingToday,
   onTheAir,
   topRated,
+  comingSoon,
 }

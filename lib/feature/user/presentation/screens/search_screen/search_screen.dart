@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
-import 'package:netflixclonenew/feature/user/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/bloc/search_bloc/search_bloc.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/dowloads_view_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/search_screen/default_movies_shows.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -11,7 +13,17 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.download))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              context
+                ..read<BottomnavCubit>().changeindex(2)
+                ..read<DowloadsViewCubit>().openDowloads();
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.download),
+          ),
+        ],
         bottom: _buildSearchBar(context),
       ),
       body: DefaultMoviesShows(),
@@ -40,11 +52,7 @@ class SearchScreen extends StatelessWidget {
                     icon: Icon(Icons.close),
                     color: AppColors.grey,
                   )
-                : IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.mic_none),
-                    color: AppColors.grey,
-                  ),
+                : IconButton(onPressed: () {}, icon: Icon(Icons.mic_none), color: AppColors.grey),
           ),
         ],
       ),

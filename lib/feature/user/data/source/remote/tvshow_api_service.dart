@@ -1,26 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:netflixclonenew/core/api/dio_client.dart';
 import 'package:netflixclonenew/core/errors/main_failure.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
 import 'package:netflixclonenew/feature/user/data/model/tv_show_model/tv_show_model.dart';
 
-sealed class TvshowService{
-  Future<Either<MainFailure,List<TvShowModel>>> getTvShows(TvshowCategory category);
+sealed class TvshowService {
+  Future<Either<MainFailure, List<TvShowModel>>> getTvShows(TvshowCategory category);
 }
 
 class TvshowApiService extends TvshowService {
-  TvshowApiService.internal();
-  static TvshowApiService instance = TvshowApiService.internal();
-  factory TvshowApiService() => instance;
+  final Dio dio;
 
-  final Dio dio = DioClient.instance.dio;
+  TvshowApiService({required this.dio});
 
   @override
-  Future<Either<MainFailure, List<TvShowModel>>> getTvShows(
-    TvshowCategory category,
-  ) async {
+  Future<Either<MainFailure, List<TvShowModel>>> getTvShows(TvshowCategory category) async {
     try {
       final String path;
       switch (category) {
@@ -42,15 +39,22 @@ class TvshowApiService extends TvshowService {
         case TvshowCategory.onTheAir:
           path = '/tv/on_the_air';
           break;
+
+        case TvshowCategory.comingSoon:
+          final now = DateTime.now();
+          final tomorrow = now.add(Duration(days: 1));
+          final tomorrowStr = DateFormat('yyyy-MM-dd').format(tomorrow);
+
+          path = '/discover/tv?first_air_date.gte=$tomorrowStr&sort_by=first_air_date.asc';
+
+          break;
       }
 
       final response = await dio.get(path);
 
       if (response.statusCode == 200) {
         return right(
-          (response.data['results'] as List)
-              .map((t) =>TvShowModel.fromJson(t))
-              .toList(),
+          (response.data['results'] as List).map((t) => TvShowModel.fromJson(t)).toList(),
         );
       }
     } catch (e) {

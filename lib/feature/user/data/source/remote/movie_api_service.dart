@@ -7,22 +7,16 @@ import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/feature/user/data/model/movie_model/movie_model.dart';
 
 sealed class MovieService {
-  Future<Either<MainFailure, List<MovieModel>>> getMovies(
-    MovieCategory category,
-  );
+  Future<Either<MainFailure, List<MovieModel>>> getMovies(MovieCategory category);
 }
 
 final class MovieApiService extends MovieService {
-  MovieApiService.internal();
-  static MovieApiService instance = MovieApiService.internal();
-  factory MovieApiService() => instance;
+  final Dio dio;
 
-  final Dio dio = DioClient.instance.dio;
+  MovieApiService({required this.dio});
 
   @override
-  Future<Either<MainFailure, List<MovieModel>>> getMovies(
-    MovieCategory category,
-  ) async {
+  Future<Either<MainFailure, List<MovieModel>>> getMovies(MovieCategory category) async {
     try {
       final String path;
       switch (category) {
@@ -50,9 +44,7 @@ final class MovieApiService extends MovieService {
 
       if (response.statusCode == 200) {
         return right(
-          (response.data['results'] as List)
-              .map((m) => MovieModel.fromJson(m))
-              .toList(),
+          (response.data['results'] as List).map((m) => MovieModel.fromJson(m)).toList(),
         );
       }
     } catch (e) {

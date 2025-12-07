@@ -7,3 +7,6 @@ class IsSearching extends SearchEvent {
 
   IsSearching({required this.query});
 }
+
+
+class GetRecommEvent extends SearchEvent{}

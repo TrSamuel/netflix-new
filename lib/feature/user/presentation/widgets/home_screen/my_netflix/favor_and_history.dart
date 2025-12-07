@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/dowloads_view_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my_netflix/downloads.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/my_netflix/favor.dart';
 

@@ -1,20 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:netflixclonenew/core/api/api_const.dart';
+import 'package:netflixclonenew/core/theme/app_colors.dart';
 
 class ComingImg extends StatelessWidget {
-  const ComingImg({super.key});
+  final String img;
+  const ComingImg({super.key, required this.img});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      decoration: BoxDecoration(
-        borderRadius: .circular(8),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(
-            'https://image.tmdb.org/t/p/original/73oKTGsw2kf03G5BRSX1pOCFwIn.jpg',
-          ),
-        ),
+    return ClipRRect(
+      borderRadius: .circular(8),
+      child: CachedNetworkImage(
+        imageUrl: '${ApiConst.imgUrl}/$img',
+        height: 200,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(height: 200, color: AppColors.darkGrey),
+        errorWidget: (context, url, error) => Container(height: 150, color: AppColors.darkGrey),
       ),
     );
   }

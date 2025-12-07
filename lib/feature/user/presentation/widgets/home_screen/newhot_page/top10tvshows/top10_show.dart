@@ -4,13 +4,12 @@ import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/bloc/newhot_bloc/new_hot_bloc.dart';
-import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/coming_soon/movie_item_coming_soon.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/top10tvshows/top10_item_tvshow.dart';
 
-class ComingSoon extends StatelessWidget {
+class Top10Show extends StatelessWidget {
   final List<Tvshow>? tvShows;
-  const ComingSoon({super.key, required this.size, required this.tvShows});
-
   final Size size;
+  const Top10Show({super.key, required this.size, required this.tvShows});
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +41,13 @@ class ComingSoon extends StatelessWidget {
         ),
       );
     }
-
-    final validShows = tvShows!.where((tvshow) => tvshow.backdropPath.isNotEmpty).toList();
+    final validTvShows = tvShows!.where((t) => t.backdropPath.isNotEmpty).toList();
 
     return ListView.builder(
-      itemCount: validShows.length,
+      itemCount: validTvShows.length < 10 ? validTvShows.length : 10,
       itemBuilder: (context, index) {
-        return TvItemComingSoon(size: size, tvshow: validShows[index]);
+        final Tvshow tvshow = validTvShows[index];
+        return Top10ItemTvshow(size: size, index: index, tvshow: tvshow);
       },
     );
   }

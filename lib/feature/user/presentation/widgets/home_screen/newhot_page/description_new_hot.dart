@@ -3,15 +3,16 @@ import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class DescriptionNewHot extends StatelessWidget {
-  const DescriptionNewHot({super.key});
+  final String overview;
+  const DescriptionNewHot({super.key, required this.overview});
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.',
-      style: TextStyle(
-        fontSize: AppfontSizes.mediumSmall,
-        color: AppColors.grey,
+    return SizedBox(
+      width: 300,
+      child: Text(
+        overview,
+        style: TextStyle(fontSize: AppfontSizes.mediumSmall, color: AppColors.grey),
       ),
     );
   }

@@ -1,22 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixclonenew/core/theme/app_colors.dart';
+import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/bloc/newhot_bloc/new_hot_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/everyone_watch/movie_item_everyones_watch.dart';
 
 class EveryonesWatch extends StatelessWidget {
-  const EveryonesWatch({super.key, required this.size});
+  final List<Movie>? movies;
+  const EveryonesWatch({super.key, required this.size, required this.movies});
 
   final Size size;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          MovieItemEveryonesWatch(size: size),
-          MovieItemEveryonesWatch(size: size),
-          MovieItemEveryonesWatch(size: size),
-          MovieItemEveryonesWatch(size: size),
-        ],
-      ),
+    if (movies == null || movies!.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            Text(
+              """ "Can't Connect" """,
+              style: TextStyle(
+                fontSize: AppfontSizes.mediumLarge,
+                color: AppColors.grey,
+                fontWeight: .bold,
+              ),
+            ),
+            SizedBox(height: 25),
+            ElevatedButton(
+              onPressed: () {
+                context.read<NewHotBloc>().add(GetNewHot());
+              },
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                shape: RoundedRectangleBorder(borderRadius: .circular(5)),
+              ),
+              child: Text("Retry"),
+            ),
+          ],
+        ),
+      );
+    }
+    final validMovies = movies!.where((m) => m.backdropPath.isNotEmpty).toList();
+    return ListView.builder(
+      itemCount: validMovies.length,
+      itemBuilder: (context, index) {
+        final Movie movie = validMovies[index];
+        return MovieItemEveryonesWatch(size: size, movie: movie);
+        ;
+      },
     );
   }
 }

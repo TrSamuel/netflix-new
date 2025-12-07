@@ -1,10 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:netflixclonenew/core/api/api_const.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/description_new_hot.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/title_and_actions.dart';
 
-class Top10ItemNewHot extends StatelessWidget {
-  const Top10ItemNewHot({super.key, required this.size, required this.index});
+class Top10ItemTvshow extends StatelessWidget {
+  final Tvshow tvshow;
+  const Top10ItemTvshow({super.key, required this.size, required this.index, required this.tvshow});
 
   final Size size;
   final int index;
@@ -21,10 +25,7 @@ class Top10ItemNewHot extends StatelessWidget {
             height: 300,
             child: Text(
               "${index + 1}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: AppfontSizes.xLarge,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppfontSizes.xLarge),
             ),
           ),
           SizedBox(
@@ -32,20 +33,17 @@ class Top10ItemNewHot extends StatelessWidget {
             child: Column(
               crossAxisAlignment: .start,
               children: [
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: .circular(8),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        'https://image.tmdb.org/t/p/original/73oKTGsw2kf03G5BRSX1pOCFwIn.jpg',
-                      ),
-                    ),
+                ClipRRect(
+                  borderRadius: .circular(8),
+                  child: CachedNetworkImage(
+                    height: 200,
+                    fit: BoxFit.cover,
+                    imageUrl: '${ApiConst.imgUrl}/${tvshow.backdropPath}',
                   ),
                 ),
-                TitleAndActions(),
-                DescriptionNewHot(),
+
+                TitleAndActions(title: tvshow.name, titleWidth: 100),
+                DescriptionNewHot(overview: tvshow.overview),
               ],
             ),
           ),

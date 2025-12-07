@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/core/utils/navigator_page.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/bottomnav_cubit.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/dowloads_view_cubit.dart';
-import 'package:netflixclonenew/feature/user/presentation/cubit/new_hot_tab_bar_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/bottomnav_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/dowloads_view_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/cubit/new_hot_tab_bar_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/screens/search_screen/search_screen.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/bottom_tab_bar_new_hot.dart';
 
@@ -16,75 +16,72 @@ class NewHotAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      pinned: true,
-      floating: false,
-      expandedHeight: 80,
-      backgroundColor: AppColors.transparentBlack,
-      titleTextStyle: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: AppfontSizes.large,
-      ),
-      title: Text("New & Hot"),
-      actions: [
-        IconButton(
-          onPressed: () {
-            context
-              ..read<BottomnavCubit>().changeindex(2)
-              ..read<DowloadsViewCubit>().openDowloads();
-          },
-          icon: Icon(Icons.download),
-        ),
-        IconButton(
-          onPressed: () {
-            NavigatorPage.goTo(SearchScreen(), context);
-          },
-          icon: Icon(Icons.search),
-        ),
-      ],
-      bottom: PreferredSize(
-        preferredSize: Size(size.width, 60),
-        child: SingleChildScrollView(
-          scrollDirection: .horizontal,
-          child: BlocBuilder<NewHotTabBarCubit, int>(
-            builder: (context, index) {
-              return Row(
-                children: [
-                  BottomTabBarNewHot(
-                    imgPath: 'assets/images/comingsoon.png',
-                    label: "Coming Soon",
-                    onTap: () {
-                      context.read<NewHotTabBarCubit>().changeindex(0);
-                    },
-                    isSelected: index == 0,
-                  ),
-                  BottomTabBarNewHot(
-                    imgPath: 'assets/images/everyoneswatching.png',
-                    label: "Everyone's Watching",
-                    onTap: () {
-                      context.read<NewHotTabBarCubit>().changeindex(1);
-                    },
-                    isSelected: index == 1,
-                  ),
-                  BottomTabBarNewHot(
-                    imgPath: 'assets/images/top10.png',
-                    label: "Top 10 Shows",
-                    onTap: () {
-                      context.read<NewHotTabBarCubit>().changeindex(2);
-                    },
-                    isSelected: index == 2,
-                  ),
-                  BottomTabBarNewHot(
-                    imgPath: 'assets/images/top10.png',
-                    label: "Top 10 Movies",
-                    onTap: () {
-                      context.read<NewHotTabBarCubit>().changeindex(3);
-                    },
-                    isSelected: index == 3,
-                  ),
-                ],
-              );
+    return SizedBox(
+      height: 155,
+      child: AppBar(
+        backgroundColor: AppColors.transparentBlack,
+        titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: AppfontSizes.large),
+        title: Text("New & Hot"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context
+                ..read<BottomnavCubit>().changeindex(2)
+                ..read<DowloadsViewCubit>().openDowloads();
             },
+            icon: Icon(Icons.download),
+          ),
+          IconButton(
+            onPressed: () {
+              NavigatorPage.goTo(SearchScreen(), context);
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size(size.width, 60),
+          child: SingleChildScrollView(
+            scrollDirection: .horizontal,
+            child: BlocBuilder<NewHotTabBarCubit, int>(
+              builder: (context, index) {
+                return Row(
+                  children: [
+                    BottomTabBarNewHot(
+                      imgPath: 'assets/images/comingsoon.png',
+                      label: "Coming Soon",
+                      onTap: () {
+                        context.read<NewHotTabBarCubit>().changeindex(0);
+                      },
+                      isSelected: index == 0,
+                    ),
+                    BottomTabBarNewHot(
+                      imgPath: 'assets/images/everyoneswatching.png',
+                      label: "Everyone's Watching",
+                      onTap: () {
+                        context.read<NewHotTabBarCubit>().changeindex(1);
+                      },
+                      isSelected: index == 1,
+                    ),
+                    BottomTabBarNewHot(
+                      imgPath: 'assets/images/top10.png',
+                      label: "Top 10 Shows",
+                      onTap: () {
+                        context.read<NewHotTabBarCubit>().changeindex(2);
+                      },
+                      isSelected: index == 2,
+                    ),
+                    BottomTabBarNewHot(
+                      imgPath: 'assets/images/top10.png',
+                      label: "Top 10 Movies",
+                      onTap: () {
+                        context.read<NewHotTabBarCubit>().changeindex(3);
+                      },
+                      isSelected: index == 3,
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -1,23 +1,21 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/api/api_const.dart';
-import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
 
-class EveryoneWatchItemIMG extends StatelessWidget {
-  final String img;
-  const EveryoneWatchItemIMG({super.key, required this.size, required this.img});
-
-  final Size size;
+class RecommItemIMg extends StatelessWidget {
+  final String backdropPath;
+  const RecommItemIMg({super.key, required this.backdropPath});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: .circular(5),
       child: CachedNetworkImage(
+        width: 140,
+        height: 80,
         fit: .cover,
-        width: size.width,
-        height: 220,
-        imageUrl: '${ApiConst.imgUrl}/$img',
+        imageUrl: '${ApiConst.imgUrl}/$backdropPath',
       ),
     );
   }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class MovieShowName extends StatelessWidget {
-  const MovieShowName({super.key});
+  final String name;
+  const MovieShowName({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MovieShowName extends StatelessWidget {
         child: Text(
           maxLines: 2,
           overflow: .ellipsis,
-          "Stranger Thingssdsdsdsdsddsdsdhkjhkjhjkh",
+          name,
           style: TextStyle(fontWeight: .bold, fontSize: AppfontSizes.medium),
         ),
       ),
