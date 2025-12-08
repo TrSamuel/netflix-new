@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclonenew/core/theme/app_colors.dart';
-import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
 import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
 import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/bloc/home_bloc/home_bloc.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/error_and_retry.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/hero_card_home.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/home_app_bar.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/movie_list_h.dart';
@@ -44,48 +43,31 @@ class _HomePageState extends State<HomePage> {
           return ShimmerLoaderHomePage();
         }
         if (state is! HomeLoaded) {
-           return Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            Text(
-              """ "Can't Connect" """,
-              style: TextStyle(
-                fontSize: AppfontSizes.mediumLarge,
-                color: AppColors.grey,
-                fontWeight: .bold,
-              ),
-            ),
-            SizedBox(height: 25),
-            ElevatedButton(
-              onPressed: () {
-                context.read<HomeBloc>().add(GetHomeItemsEvent());
-              },
-              style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
-                shape: RoundedRectangleBorder(borderRadius: .circular(5)),
-              ),
-              child: Text("Retry"),
-            ),
-          ],
-        ),
-      );
+          return ErrorAndRetry();
         }
         final Map<MovieCategory, List<Movie>> movies = state.movies;
         final Map<TvshowCategory, List<Tvshow>> tvShows = state.tvShows;
         return RefreshIndicator(
-          onRefresh: () async{
+          onRefresh: () async {
             context.read<HomeBloc>().add(GetHomeItemsEvent());
             await Future.delayed(Duration(milliseconds: 500));
           },
           child: CustomScrollView(
-            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics: BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             slivers: [
               HomeAppBar(),
               SliverList(
-                delegate: SliverChildBuilderDelegate(childCount: 13, (context, index) {
+                delegate: SliverChildBuilderDelegate(childCount: 13, (
+                  context,
+                  index,
+                ) {
                   final list = [
-                    HeroCardHome(size: size, movies: movies[MovieCategory.trendingDay]),
+                    HeroCardHome(
+                      size: size,
+                      movies: movies[MovieCategory.trendingDay],
+                    ),
                     TvshowListH(
                       label: 'Popular TV Shows',
                       tvShows: tvShows[TvshowCategory.popular],
@@ -111,7 +93,10 @@ class _HomePageState extends State<HomePage> {
                       label: 'TV Shows Airing Today',
                       tvShows: tvShows[TvshowCategory.airingToday],
                     ),
-                    MovieListH(movies: movies[MovieCategory.topRated], label: 'Top rated movies'),
+                    MovieListH(
+                      movies: movies[MovieCategory.topRated],
+                      label: 'Top rated movies',
+                    ),
                     TvshowListH(
                       label: 'Top Rated TV Shows',
                       tvShows: tvShows[TvshowCategory.topRated],
@@ -124,7 +109,10 @@ class _HomePageState extends State<HomePage> {
                       label: 'Top 10 on the Air Shows',
                       tvShows: tvShows[TvshowCategory.onTheAir],
                     ),
-                    MovieListH(movies: movies[MovieCategory.upcoming], label: 'Upcoming movies'),
+                    MovieListH(
+                      movies: movies[MovieCategory.upcoming],
+                      label: 'Upcoming movies',
+                    ),
                     TvshowlistTop10h(
                       label: 'Top 10 Weekly Trending TV Shows',
                       tvShows: tvShows[TvshowCategory.trendingWeek],

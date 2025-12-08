@@ -52,7 +52,11 @@ class SearchScreen extends StatelessWidget {
                     icon: Icon(Icons.close),
                     color: AppColors.grey,
                   )
-                : IconButton(onPressed: () {}, icon: Icon(Icons.mic_none), color: AppColors.grey),
+                : IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.mic_none),
+                    color: AppColors.grey,
+                  ),
           ),
         ],
       ),

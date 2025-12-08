@@ -1,13 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:netflixclonenew/core/api/dio_client.dart';
 import 'package:netflixclonenew/core/errors/main_failure.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
+import 'package:netflixclonenew/feature/user/data/model/movie_details_model/movie_details_model.dart';
 import 'package:netflixclonenew/feature/user/data/model/movie_model/movie_model.dart';
 
 sealed class MovieService {
   Future<Either<MainFailure, List<MovieModel>>> getMovies(MovieCategory category);
+  Future<Either<MainFailure, MovieDetailsModel>> getMovieDetails(int id);
 }
 
 final class MovieApiService extends MovieService {
@@ -53,5 +54,21 @@ final class MovieApiService extends MovieService {
     }
 
     return left(ClientFailure());
+  }
+
+  @override
+  Future<Either<MainFailure, MovieDetailsModel>> getMovieDetails(int id) async {
+    try {
+      final response = await dio.get('/movie/$id');
+
+      if (response.statusCode == 200) {
+        return right(MovieDetailsModel.fromJson((response.data as Map<String, dynamic>)));
+      }
+
+      return left(ClientFailure());
+    } catch (e) {
+      debugPrint("failed to get  movie details: $e");
+      return left(ClientFailure());
+    }
   }
 }

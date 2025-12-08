@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
@@ -15,7 +14,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetMovies getMovies;
   final GetTvshows getTvshows;
 
-  HomeBloc({required this.getMovies, required this.getTvshows}) : super(HomeInitState()) {
+  HomeBloc({required this.getMovies, required this.getTvshows})
+    : super(HomeInitState()) {
     on<GetHomeItemsEvent>(loadMoviesShows);
   }
 
@@ -37,25 +37,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final Map<MovieCategory, List<Movie>> movies = {};
 
     final resultsM = await Future.wait(
-      (event as GetHomeItemsEvent).movCategrs.map((category) => getMovies(category)),
+      (event as GetHomeItemsEvent).movCategrs.map(
+        (category) => getMovies(category),
+      ),
     );
 
     for (int i = 0; i < event.movCategrs.length; i++) {
-      resultsM[i].fold((failure) => null, (success) => movies[event.movCategrs[i]] = success);
+      resultsM[i].fold(
+        (failure) => null,
+        (success) => movies[event.movCategrs[i]] = success,
+      );
     }
 
     return movies;
   }
 
-  Future<Map<TvshowCategory, List<Tvshow>>> getTvShowsMap(HomeEvent event) async {
+  Future<Map<TvshowCategory, List<Tvshow>>> getTvShowsMap(
+    HomeEvent event,
+  ) async {
     final Map<TvshowCategory, List<Tvshow>> tvshows = {};
 
     final resultsT = await Future.wait(
-      (event as GetHomeItemsEvent).tvCategrs.map((category) => getTvshows(category)),
+      (event as GetHomeItemsEvent).tvCategrs.map(
+        (category) => getTvshows(category),
+      ),
     );
 
     for (int i = 0; i < event.tvCategrs.length; i++) {
-      resultsT[i].fold((failure) => null, (success) => tvshows[event.tvCategrs[i]] = success);
+      resultsT[i].fold(
+        (failure) => null,
+        (success) => tvshows[event.tvCategrs[i]] = success,
+      );
     }
 
     return tvshows;

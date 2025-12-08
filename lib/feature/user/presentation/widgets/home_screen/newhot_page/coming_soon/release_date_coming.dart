@@ -19,11 +19,17 @@ class ReleaseDateComing extends StatelessWidget {
         children: [
           Text(
             month,
-            style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.grey),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColors.grey,
+            ),
           ),
           Text(
             "${date.day}",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppfontSizes.xLarge),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: AppfontSizes.xLarge,
+            ),
           ),
         ],
       ),

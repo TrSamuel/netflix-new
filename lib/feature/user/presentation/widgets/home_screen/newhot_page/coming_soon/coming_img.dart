@@ -15,8 +15,10 @@ class ComingImg extends StatelessWidget {
         imageUrl: '${ApiConst.imgUrl}/$img',
         height: 200,
         fit: BoxFit.cover,
-        placeholder: (context, url) => Container(height: 200, color: AppColors.darkGrey),
-        errorWidget: (context, url, error) => Container(height: 150, color: AppColors.darkGrey),
+        placeholder: (context, url) =>
+            Container(height: 200, color: AppColors.darkGrey),
+        errorWidget: (context, url, error) =>
+            Container(height: 150, color: AppColors.darkGrey),
       ),
     );
   }

@@ -1,7 +1,7 @@
 part of 'search_bloc.dart';
 
 sealed class SearchState extends Equatable {
-   @override
+  @override
   List<Object> get props => [];
 }
 
@@ -18,7 +18,7 @@ class LoadedRecommMoviesShows extends SearchState {
   LoadedRecommMoviesShows({required this.movies, required this.tvShows});
 
   @override
-  List<Object> get props => [movies,tvShows];
+  List<Object> get props => [movies, tvShows];
 }
 
-class RecommFailure extends SearchState{}
+class RecommFailure extends SearchState {}

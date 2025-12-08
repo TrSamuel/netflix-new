@@ -55,10 +55,22 @@ class _NewhotPageState extends State<NewhotPage> {
                   child: IndexedStack(
                     index: index,
                     children: [
-                      ComingSoon(size: size, tvShows: tvShows[TvshowCategory.comingSoon]),
-                      EveryonesWatch(size: size, movies: movies[MovieCategory.popular]),
-                      Top10Show(size: size, tvShows: tvShows[TvshowCategory.topRated]),
-                      Top10Movie(size: size, movies: movies[MovieCategory.topRated]),
+                      ComingSoon(
+                        size: size,
+                        tvShows: tvShows[TvshowCategory.comingSoon],
+                      ),
+                      EveryonesWatch(
+                        size: size,
+                        movies: movies[MovieCategory.popular],
+                      ),
+                      Top10Show(
+                        size: size,
+                        tvShows: tvShows[TvshowCategory.topRated],
+                      ),
+                      Top10Movie(
+                        size: size,
+                        movies: movies[MovieCategory.topRated],
+                      ),
                     ],
                   ),
                 );

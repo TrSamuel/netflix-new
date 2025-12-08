@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class ActionButtonMovidetailsD extends StatelessWidget {
@@ -18,7 +17,7 @@ class ActionButtonMovidetailsD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: .only(top: 8),
+      padding: .only(top: 6),
       child: ElevatedButton.icon(
         onPressed: () {},
         label: Text(label),
@@ -27,10 +26,13 @@ class ActionButtonMovidetailsD extends StatelessWidget {
           backgroundColor: bgColor,
           foregroundColor: fgColor,
           fixedSize: Size.fromWidth(MediaQuery.sizeOf(context).width),
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 9),
           shape: RoundedRectangleBorder(borderRadius: .circular(5)),
           iconSize: 28,
-          textStyle: TextStyle(fontSize: AppfontSizes.mediumLarge, fontWeight: .bold),
+          textStyle: TextStyle(
+            fontSize: AppfontSizes.mediumLarge,
+            fontWeight: .bold,
+          ),
         ),
       ),
     );

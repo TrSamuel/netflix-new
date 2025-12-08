@@ -9,6 +9,6 @@ class GetTvshows {
 
   GetTvshows({required this.tvshowRepo});
 
-  Future<Either<MainFailure,List<Tvshow>>> call(TvshowCategory category) =>
+  Future<Either<MainFailure, List<Tvshow>>> call(TvshowCategory category) =>
       tvshowRepo.geTvShows(category);
 }

@@ -13,9 +13,9 @@ class ShimmerLoaderMynetflix extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer(
-       duration: Duration(seconds: 2),
+      duration: Duration(seconds: 2),
       interval: Duration.zero,
-      
+
       color: AppColors.mediumGrey,
       direction: ShimmerDirection.fromLTRB(),
       child: CustomScrollView(
@@ -45,7 +45,7 @@ class ShimmerLoaderMynetflix extends StatelessWidget {
                                       width:
                                           MediaQuery.sizeOf(context).width * .5,
                                       height: 30,
-      
+
                                       decoration: BoxDecoration(
                                         color: const .fromARGB(255, 28, 28, 28),
                                         borderRadius: .circular(50),

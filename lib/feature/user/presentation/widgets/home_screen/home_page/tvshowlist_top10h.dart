@@ -10,7 +10,11 @@ import 'package:stroke_text/stroke_text.dart';
 class TvshowlistTop10h extends StatelessWidget {
   final String label;
   final List<Tvshow>? tvShows;
-  const TvshowlistTop10h({super.key, required this.label, required this.tvShows});
+  const TvshowlistTop10h({
+    super.key,
+    required this.label,
+    required this.tvShows,
+  });
 
   @override
   Widget build(BuildContext context) {

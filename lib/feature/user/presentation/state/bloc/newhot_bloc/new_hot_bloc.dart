@@ -31,7 +31,9 @@ class NewHotBloc extends Bloc<NewHotBlocEvent, NewHotBlocState> {
     }
   }
 
-  Future<Map<MovieCategory, List<Movie>>> getMoviesMap(NewHotBlocEvent event) async {
+  Future<Map<MovieCategory, List<Movie>>> getMoviesMap(
+    NewHotBlocEvent event,
+  ) async {
     final Map<MovieCategory, List<Movie>> movies = {};
 
     final resultsM = await Future.wait(
@@ -39,13 +41,18 @@ class NewHotBloc extends Bloc<NewHotBlocEvent, NewHotBlocState> {
     );
 
     for (int i = 0; i < event.movCategrs.length; i++) {
-      resultsM[i].fold((failure) => null, (success) => movies[event.movCategrs[i]] = success);
+      resultsM[i].fold(
+        (failure) => null,
+        (success) => movies[event.movCategrs[i]] = success,
+      );
     }
 
     return movies;
   }
 
-  Future<Map<TvshowCategory, List<Tvshow>>> getTvShowsMap(NewHotBlocEvent event) async {
+  Future<Map<TvshowCategory, List<Tvshow>>> getTvShowsMap(
+    NewHotBlocEvent event,
+  ) async {
     final Map<TvshowCategory, List<Tvshow>> tvshows = {};
 
     final resultsT = await Future.wait(
@@ -53,7 +60,10 @@ class NewHotBloc extends Bloc<NewHotBlocEvent, NewHotBlocState> {
     );
 
     for (int i = 0; i < event.tvCategrs.length; i++) {
-      resultsT[i].fold((failure) => null, (success) => tvshows[event.tvCategrs[i]] = success);
+      resultsT[i].fold(
+        (failure) => null,
+        (success) => tvshows[event.tvCategrs[i]] = success,
+      );
     }
 
     return tvshows;

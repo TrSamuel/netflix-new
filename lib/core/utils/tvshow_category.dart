@@ -1,4 +1,4 @@
-enum  TvshowCategory {
+enum TvshowCategory {
   popular,
   trendingDay,
   trendingWeek,

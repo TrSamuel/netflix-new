@@ -33,7 +33,10 @@ class ComingSoon extends StatelessWidget {
                 context.read<NewHotBloc>().add(GetNewHot());
               },
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                textStyle: TextStyle(
+                  fontSize: AppfontSizes.large,
+                  fontWeight: .bold,
+                ),
                 shape: RoundedRectangleBorder(borderRadius: .circular(5)),
               ),
               child: Text("Retry"),
@@ -43,7 +46,9 @@ class ComingSoon extends StatelessWidget {
       );
     }
 
-    final validShows = tvShows!.where((tvshow) => tvshow.backdropPath.isNotEmpty).toList();
+    final validShows = tvShows!
+        .where((tvshow) => tvshow.backdropPath.isNotEmpty)
+        .toList();
 
     return ListView.builder(
       itemCount: validShows.length,

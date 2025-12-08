@@ -33,7 +33,10 @@ class EveryonesWatch extends StatelessWidget {
                 context.read<NewHotBloc>().add(GetNewHot());
               },
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                textStyle: TextStyle(
+                  fontSize: AppfontSizes.large,
+                  fontWeight: .bold,
+                ),
                 shape: RoundedRectangleBorder(borderRadius: .circular(5)),
               ),
               child: Text("Retry"),
@@ -42,13 +45,14 @@ class EveryonesWatch extends StatelessWidget {
         ),
       );
     }
-    final validMovies = movies!.where((m) => m.backdropPath.isNotEmpty).toList();
+    final validMovies = movies!
+        .where((m) => m.backdropPath.isNotEmpty)
+        .toList();
     return ListView.builder(
       itemCount: validMovies.length,
       itemBuilder: (context, index) {
         final Movie movie = validMovies[index];
         return MovieItemEveryonesWatch(size: size, movie: movie);
-        ;
       },
     );
   }

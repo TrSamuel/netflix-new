@@ -30,7 +30,10 @@ class ShimmerLoaderHomePage extends StatelessWidget {
             ],
           ),
           SliverList(
-            delegate: SliverChildBuilderDelegate(childCount: 2, (context, index) {
+            delegate: SliverChildBuilderDelegate(childCount: 2, (
+              context,
+              index,
+            ) {
               final list = [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
@@ -46,9 +49,13 @@ class ShimmerLoaderHomePage extends StatelessWidget {
                           child: Stack(
                             children: [
                               Positioned.fill(
-                                child: Container(color: const Color.fromARGB(255, 28, 28, 28)),
+                                child: Container(
+                                  color: const Color.fromARGB(255, 28, 28, 28),
+                                ),
                               ),
-                              Positioned.fill(child: Container(decoration: BoxDecoration())),
+                              Positioned.fill(
+                                child: Container(decoration: BoxDecoration()),
+                              ),
                             ],
                           ),
                         ),

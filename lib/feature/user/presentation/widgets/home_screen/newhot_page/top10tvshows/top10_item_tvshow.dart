@@ -8,7 +8,12 @@ import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/ne
 
 class Top10ItemTvshow extends StatelessWidget {
   final Tvshow tvshow;
-  const Top10ItemTvshow({super.key, required this.size, required this.index, required this.tvshow});
+  const Top10ItemTvshow({
+    super.key,
+    required this.size,
+    required this.index,
+    required this.tvshow,
+  });
 
   final Size size;
   final int index;
@@ -25,7 +30,10 @@ class Top10ItemTvshow extends StatelessWidget {
             height: 300,
             child: Text(
               "${index + 1}",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppfontSizes.xLarge),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: AppfontSizes.xLarge,
+              ),
             ),
           ),
           SizedBox(

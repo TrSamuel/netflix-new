@@ -32,7 +32,10 @@ class Top10Movie extends StatelessWidget {
                 context.read<NewHotBloc>().add(GetNewHot());
               },
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                textStyle: TextStyle(
+                  fontSize: AppfontSizes.large,
+                  fontWeight: .bold,
+                ),
                 shape: RoundedRectangleBorder(borderRadius: .circular(5)),
               ),
               child: Text("Retry"),
@@ -42,9 +45,11 @@ class Top10Movie extends StatelessWidget {
       );
     }
 
-    final validMovies = movies!.where((m) => m.backdropPath.isNotEmpty).toList();
+    final validMovies = movies!
+        .where((m) => m.backdropPath.isNotEmpty)
+        .toList();
     return ListView.builder(
-      itemCount: validMovies.length<10?validMovies.length:10,
+      itemCount: validMovies.length < 10 ? validMovies.length : 10,
       itemBuilder: (context, index) {
         final Movie movie = validMovies[index];
         return Top10ItemMovie(size: size, index: index, movie: movie);

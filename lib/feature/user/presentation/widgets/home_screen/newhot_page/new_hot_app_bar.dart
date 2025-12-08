@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixclonenew/core/route/custom_route.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
-import 'package:netflixclonenew/core/utils/navigator_page.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/cubit/bottomnav_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/cubit/dowloads_view_cubit.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/cubit/new_hot_tab_bar_cubit.dart';
@@ -20,7 +20,10 @@ class NewHotAppBar extends StatelessWidget {
       height: 155,
       child: AppBar(
         backgroundColor: AppColors.transparentBlack,
-        titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: AppfontSizes.large),
+        titleTextStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: AppfontSizes.large,
+        ),
         title: Text("New & Hot"),
         actions: [
           IconButton(
@@ -33,7 +36,7 @@ class NewHotAppBar extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              NavigatorPage.goTo(SearchScreen(), context);
+              GoTo.page(context, page: SearchScreen());
             },
             icon: Icon(Icons.search),
           ),

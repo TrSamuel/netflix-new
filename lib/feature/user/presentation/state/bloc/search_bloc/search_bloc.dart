@@ -12,7 +12,8 @@ part 'search_state.dart';
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final GetMovies getMovies;
   final GetTvshows getTvshows;
-  SearchBloc({required this.getMovies, required this.getTvshows}) : super(InitialSearchState()) {
+  SearchBloc({required this.getMovies, required this.getTvshows})
+    : super(InitialSearchState()) {
     on<GetRecommEvent>((event, emit) async {
       emit(LoadingRecommState());
       await Future.delayed(Duration(seconds: 3));

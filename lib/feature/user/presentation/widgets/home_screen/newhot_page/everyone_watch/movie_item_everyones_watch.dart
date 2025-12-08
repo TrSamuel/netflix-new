@@ -6,7 +6,11 @@ import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/ne
 
 class MovieItemEveryonesWatch extends StatelessWidget {
   final Movie movie;
-  const MovieItemEveryonesWatch({super.key, required this.size, required this.movie});
+  const MovieItemEveryonesWatch({
+    super.key,
+    required this.size,
+    required this.movie,
+  });
 
   final Size size;
 

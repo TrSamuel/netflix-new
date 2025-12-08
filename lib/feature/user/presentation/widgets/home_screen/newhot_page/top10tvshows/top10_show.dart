@@ -32,7 +32,10 @@ class Top10Show extends StatelessWidget {
                 context.read<NewHotBloc>().add(GetNewHot());
               },
               style: ElevatedButton.styleFrom(
-                textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                textStyle: TextStyle(
+                  fontSize: AppfontSizes.large,
+                  fontWeight: .bold,
+                ),
                 shape: RoundedRectangleBorder(borderRadius: .circular(5)),
               ),
               child: Text("Retry"),
@@ -41,7 +44,9 @@ class Top10Show extends StatelessWidget {
         ),
       );
     }
-    final validTvShows = tvShows!.where((t) => t.backdropPath.isNotEmpty).toList();
+    final validTvShows = tvShows!
+        .where((t) => t.backdropPath.isNotEmpty)
+        .toList();
 
     return ListView.builder(
       itemCount: validTvShows.length < 10 ? validTvShows.length : 10,

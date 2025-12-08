@@ -9,7 +9,7 @@ sealed class NewHotBlocState extends Equatable {
 
 final class NewHotBlocInitial extends NewHotBlocState {}
 
-final class NewHotLoading extends NewHotBlocState{}
+final class NewHotLoading extends NewHotBlocState {}
 
 final class NewHotLoaded extends NewHotBlocState {
   final Map<MovieCategory, List<Movie>> movies;
@@ -17,9 +17,8 @@ final class NewHotLoaded extends NewHotBlocState {
 
   const NewHotLoaded({required this.movies, required this.tvShows});
 
-
   @override
-  List<Object> get props => [movies,tvShows];
+  List<Object> get props => [movies, tvShows];
 }
 
-final class NewHotFailure extends NewHotBlocState{}
+final class NewHotFailure extends NewHotBlocState {}

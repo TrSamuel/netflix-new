@@ -12,7 +12,10 @@ class DescriptionNewHot extends StatelessWidget {
       width: 300,
       child: Text(
         overview,
-        style: TextStyle(fontSize: AppfontSizes.mediumSmall, color: AppColors.grey),
+        style: TextStyle(
+          fontSize: AppfontSizes.mediumSmall,
+          color: AppColors.grey,
+        ),
       ),
     );
   }

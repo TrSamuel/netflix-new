@@ -16,7 +16,7 @@ class ShimmerLoaderNewhot extends StatelessWidget {
     return Shimmer(
       duration: Duration(seconds: 2),
       interval: Duration.zero,
-      
+
       color: AppColors.mediumGrey,
       direction: ShimmerDirection.fromLTRB(),
       child: CustomScrollView(
@@ -146,7 +146,8 @@ class ShimmerLoaderNewhot extends StatelessWidget {
                                           padding: const EdgeInsets.all(8.0),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              color: AppColors.shimmerLoaderColor,
+                                              color:
+                                                  AppColors.shimmerLoaderColor,
                                               borderRadius: .circular(50),
                                             ),
                                             width: index % 3 == 0 ? 400 : 200,

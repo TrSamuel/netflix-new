@@ -9,6 +9,6 @@ class GetMovies {
 
   GetMovies({required this.movieRepo});
 
-  Future<Either<MainFailure,List<Movie>>> call(MovieCategory category) =>
+  Future<Either<MainFailure, List<Movie>>> call(MovieCategory category) =>
       movieRepo.geMovies(category);
 }

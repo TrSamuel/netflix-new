@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/api/api_const.dart';
-import 'package:netflixclonenew/core/utils/const/test_appconst.dart';
 
 class EveryoneWatchItemIMG extends StatelessWidget {
   final String img;
-  const EveryoneWatchItemIMG({super.key, required this.size, required this.img});
+  const EveryoneWatchItemIMG({
+    super.key,
+    required this.size,
+    required this.img,
+  });
 
   final Size size;
 

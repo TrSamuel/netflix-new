@@ -27,7 +27,9 @@ class _DefaultMoviesShowsState extends State<DefaultMoviesShows> {
     return BlocBuilder<SearchBloc, SearchState>(
       buildWhen: (previous, current) {
         if (current is LoadingRecommState) return true;
-        if (previous is LoadingRecommState && current is LoadedRecommMoviesShows) return true;
+        if (previous is LoadingRecommState &&
+            current is LoadedRecommMoviesShows)
+          return true;
 
         return false;
       },
@@ -54,7 +56,10 @@ class _DefaultMoviesShowsState extends State<DefaultMoviesShows> {
                     context.read<SearchBloc>().add((GetRecommEvent()));
                   },
                   style: ElevatedButton.styleFrom(
-                    textStyle: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                    textStyle: TextStyle(
+                      fontSize: AppfontSizes.large,
+                      fontWeight: .bold,
+                    ),
                     shape: RoundedRectangleBorder(borderRadius: .circular(5)),
                   ),
                   child: Text("Retry"),
@@ -75,7 +80,10 @@ class _DefaultMoviesShowsState extends State<DefaultMoviesShows> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     "Recommend Shows & Movies",
-                    style: TextStyle(fontSize: AppfontSizes.large, fontWeight: .bold),
+                    style: TextStyle(
+                      fontSize: AppfontSizes.large,
+                      fontWeight: .bold,
+                    ),
                   ),
                 ),
                 Padding(
@@ -88,7 +96,9 @@ class _DefaultMoviesShowsState extends State<DefaultMoviesShows> {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Row(
                             children: [
-                              RecommItemIMg(backdropPath: movies[index].backdropPath),
+                              RecommItemIMg(
+                                backdropPath: movies[index].backdropPath,
+                              ),
                               MovieShowName(name: movies[index].title),
                               Spacer(),
                               PlayButton(),
@@ -102,7 +112,9 @@ class _DefaultMoviesShowsState extends State<DefaultMoviesShows> {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Row(
                             children: [
-                              RecommItemIMg(backdropPath: tvShows[index].backdropPath),
+                              RecommItemIMg(
+                                backdropPath: tvShows[index].backdropPath,
+                              ),
                               MovieShowName(name: tvShows[index].name),
                               Spacer(),
                               PlayButton(),

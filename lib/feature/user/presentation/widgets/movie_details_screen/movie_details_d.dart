@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/movie_details_screen/action_button_movidetails_d.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/movie_details_screen/over_view_movie_d.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/movie_details_screen/starring_and_more_movie_d.dart';
 
 class MovieDetailsD extends StatelessWidget {
   const MovieDetailsD({super.key});
@@ -33,7 +35,10 @@ class MovieDetailsD extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               "Watch in Tamil..",
-              style: TextStyle(fontSize: AppfontSizes.mediumLarge, fontWeight: .bold),
+              style: TextStyle(
+                fontSize: AppfontSizes.mediumLarge,
+                fontWeight: .bold,
+              ),
             ),
           ),
           ActionButtonMovidetailsD(
@@ -49,25 +54,16 @@ class MovieDetailsD extends StatelessWidget {
             label: 'Download',
           ),
           OverViewMovieD(),
+          StarringAndMoreMovieD(),
+          Text(
+            "Director: Praveen K",
+            style: TextStyle(
+              color: AppColors.grey,
+              fontSize: AppfontSizes.mediumSmall,
+            ),
+          ),
         ],
       ),
-    );
-  }
-}
-
-class OverViewMovieD extends StatelessWidget {
-  const OverViewMovieD({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const .only(top: 8),
-      child: Text("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    """, style: TextStyle(fontSize: AppfontSizes.mediumSmall)),
     );
   }
 }

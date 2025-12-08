@@ -6,6 +6,7 @@ import 'package:netflixclonenew/feature/user/data/source/remote/movie_api_servic
 import 'package:netflixclonenew/feature/user/data/source/remote/tvshow_api_service.dart';
 import 'package:netflixclonenew/feature/user/domain/repositories/movie_repo.dart';
 import 'package:netflixclonenew/feature/user/domain/repositories/tvshow_repo.dart';
+import 'package:netflixclonenew/feature/user/domain/usecases/get_moviedetails.dart';
 import 'package:netflixclonenew/feature/user/domain/usecases/get_movies.dart';
 import 'package:netflixclonenew/feature/user/domain/usecases/get_tvshows.dart';
 
@@ -20,6 +21,7 @@ class ServiceLocator {
       ..registerLazySingleton<MovieRepo>(() => MovierepoImp(movieService: sl<MovieService>()))
       ..registerLazySingleton<TvshowRepo>(() => TvshowrepoImp(tvshowService: sl<TvshowService>()))
       ..registerLazySingleton<GetMovies>(() => GetMovies(movieRepo: sl<MovieRepo>()))
-      ..registerLazySingleton<GetTvshows>(() => GetTvshows(tvshowRepo: sl<TvshowRepo>()));
+      ..registerLazySingleton<GetTvshows>(() => GetTvshows(tvshowRepo: sl<TvshowRepo>()))
+      ..registerLazySingleton<GetMoviedetails>(() => GetMoviedetails(movieRepo: sl<MovieRepo>()));
   }
 }

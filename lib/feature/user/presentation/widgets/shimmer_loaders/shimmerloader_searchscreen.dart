@@ -8,9 +8,9 @@ class ShimmerloaderSearchscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer(
-     duration: Duration(seconds: 2),
+      duration: Duration(seconds: 2),
       interval: Duration.zero,
-      
+
       color: AppColors.mediumGrey,
       direction: ShimmerDirection.fromLTRB(),
       child: SingleChildScrollView(
