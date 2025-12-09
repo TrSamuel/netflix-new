@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv/tv_show.dart';
 import 'package:netflixclonenew/feature/user/domain/usecases/get_movies.dart';
 import 'package:netflixclonenew/feature/user/domain/usecases/get_tvshows.dart';
 
@@ -19,7 +19,6 @@ class NewHotBloc extends Bloc<NewHotBlocEvent, NewHotBlocState> {
 
   Future<void> loadMoviesShows(NewHotBlocEvent event, Emitter emit) async {
     emit(NewHotLoading());
-    await Future.delayed(Duration(seconds: 3));
     final movies = await getMoviesMap(event);
 
     final tvshows = await getTvShowsMap(event);

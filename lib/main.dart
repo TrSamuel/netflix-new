@@ -4,6 +4,6 @@ import 'package:netflixclonenew/feature/user/presentation/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ServiceLocator.initDi();
+  initDi();
   runApp(NetflixApp());
 }

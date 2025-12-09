@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv/tv_show.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/bloc/home_bloc/home_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/error_and_retry.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/hero_card_home.dart';
@@ -43,11 +44,12 @@ class _HomePageState extends State<HomePage> {
           return ShimmerLoaderHomePage();
         }
         if (state is! HomeLoaded) {
-          return ErrorAndRetry();
+          return ErrorAndRetry(bloc: context.read<HomeBloc>());
         }
         final Map<MovieCategory, List<Movie>> movies = state.movies;
         final Map<TvshowCategory, List<Tvshow>> tvShows = state.tvShows;
         return RefreshIndicator(
+          color: AppColors.mediumGrey,
           onRefresh: () async {
             context.read<HomeBloc>().add(GetHomeItemsEvent());
             await Future.delayed(Duration(milliseconds: 500));
@@ -118,7 +120,6 @@ class _HomePageState extends State<HomePage> {
                       tvShows: tvShows[TvshowCategory.trendingWeek],
                     ),
                   ];
-
                   return list[index];
                 }),
               ),

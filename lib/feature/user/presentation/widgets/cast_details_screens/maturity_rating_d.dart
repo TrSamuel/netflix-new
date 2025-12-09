@@ -3,7 +3,8 @@ import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
 
 class MaturityRatingD extends StatelessWidget {
-  const MaturityRatingD({super.key});
+  final String maturityRating;
+  const MaturityRatingD({super.key, required this.maturityRating});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class MaturityRatingD extends StatelessWidget {
         child: Padding(
           padding: const .symmetric(horizontal: 6, vertical: 6),
           child: Text(
-            "U/A 16+",
+            maturityRating,
             style: TextStyle(
               fontSize: AppfontSizes.large,
               color: AppColors.grey,

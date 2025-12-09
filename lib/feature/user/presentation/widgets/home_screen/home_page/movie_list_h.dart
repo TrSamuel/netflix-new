@@ -1,11 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/api/api_const.dart';
+import 'package:netflixclonenew/core/di/service_locator.dart';
 import 'package:netflixclonenew/core/route/custom_route.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/repositories/movie_repo.dart';
 import 'package:netflixclonenew/feature/user/domain/usecases/get_moviedetails.dart';
+import 'package:netflixclonenew/feature/user/domain/usecases/get_movies.dart';
 import 'package:netflixclonenew/feature/user/presentation/screens/movie_details_screen/movie_details_screen.dart';
 
 class MovieListH extends StatelessWidget {
@@ -57,8 +61,17 @@ class MovieItem extends StatelessWidget {
     return Padding(
       padding: const .all(5.0),
       child: InkWell(
-        onTap: () {
-          GoTo.page(context, page: MovieDetailsScreen(id: movie.id,));
+        onTap: () async {
+          final movieData = await context.read<GetMoviedetails>().call(movie.id);
+          movieData.fold(
+            (failure) => ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text("Cannot see movie details"))),
+            (success) => GoTo.page(
+              context,
+              page: MovieDetailsScreen(movieDetails: success, ),
+            ),
+          );
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),

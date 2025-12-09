@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie_details.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie_details.dart';
 import 'credits.dart';
 import 'genre.dart';
 import 'production_company.dart';
@@ -18,7 +18,7 @@ class MovieDetailsModel extends MovieDetails {
   @JsonKey(name: 'belongs_to_collection')
   dynamic belongsToCollection;
   int? budget;
-  List<Genre>? genres;
+  List<Genre>? genres_;
   String? homepage;
   int? id_;
   @JsonKey(name: 'imdb_id')
@@ -61,7 +61,7 @@ class MovieDetailsModel extends MovieDetails {
     this.backdropPath_,
     this.belongsToCollection,
     this.budget,
-    this.genres,
+    this.genres_,
     this.homepage,
     this.id_,
     this.imdbId,
@@ -90,8 +90,44 @@ class MovieDetailsModel extends MovieDetails {
          backdropPath: backdropPath_ ?? '',
          id: id_ ?? 0,
          overview: overview_ ?? '',
-         releaseDate: releaseDate_ == null ? DateTime.now() : DateTime.parse(releaseDate_),
+         releaseDate: releaseDate_ == null
+             ? DateTime.now()
+             : DateTime.parse(releaseDate_),
          title: title_ ?? '',
+         casts: credits?.cast != null
+             ? credits!.cast!.map((c) => c.name ?? '').toList()
+             : [],
+         director: credits?.crew != null
+             ? credits?.crew
+                       ?.firstWhere((cr) => cr.department == 'Directing')
+                       .name ??
+                   ''
+             : '',
+         genres: genres_ != null
+             ? genres_.map((g) => g.name ?? '').toList()
+             : [],
+         maturityRating: releaseDates?.results != null
+             ? releaseDates?.results
+                       ?.firstWhere((r) => r.iso31661 == 'IN')
+                       .releaseDates
+                       ?.first
+                       .certification ??
+                   ''
+             : '',
+         transLanguages: translations?.translations != null
+             ? translations!.translations!
+                   .map((t) => t.englishName ?? '')
+                   .toList()
+             : [],
+         writers: credits?.crew != null
+             ? credits!.crew!
+                   .where((cr) => cr.department == 'Writing')
+                   .map((c) => c.name ?? '')
+                   .toList()
+             : [],
+         duration: runtime != null || runtime != 0
+             ? formatRuntime(runtime!)
+             : 'N/A',
        );
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -99,4 +135,17 @@ class MovieDetailsModel extends MovieDetails {
   }
 
   Map<String, dynamic> toJson() => _$MovieDetailsModelToJson(this);
+
+  static String formatRuntime(int runtime) {
+    final hours = runtime ~/ 60;
+    final minutes = runtime % 60;
+
+    if (hours > 0 && minutes > 0) {
+      return "${hours}h ${minutes}m";
+    } else if (hours > 0) {
+      return "${hours}h";
+    } else {
+      return "${minutes}m";
+    }
+  }
 }

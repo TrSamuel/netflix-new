@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/description_new_hot.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/everyone_watch/everyone_watch_item_i_m_g.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/title_and_actions.dart';

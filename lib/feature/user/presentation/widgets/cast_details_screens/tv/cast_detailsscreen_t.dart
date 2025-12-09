@@ -53,7 +53,7 @@ class CastDetailsScreenTV extends StatelessWidget {
               ),
               kHeight,
               FieldTypeD(label: 'Maturity Rating'),
-              MaturityRatingD(),
+              MaturityRatingD(maturityRating: ''),
               kHeight,
               FieldTypeD(label: 'Genres'),
               ...List.generate(

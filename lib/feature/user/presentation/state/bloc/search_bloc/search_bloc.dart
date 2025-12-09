@@ -1,45 +1,41 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclonenew/core/utils/movie_category.dart';
-import 'package:netflixclonenew/core/utils/tvshow_category.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
-import 'package:netflixclonenew/feature/user/domain/usecases/get_movies.dart';
-import 'package:netflixclonenew/feature/user/domain/usecases/get_tvshows.dart';
-part 'search_event.dart';
-part 'search_state.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv/tv_show.dart';
+import 'package:netflixclonenew/feature/user/domain/usecases/search_movies.dart';
+import 'package:netflixclonenew/feature/user/domain/usecases/search_tv.dart';
 
-class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  final GetMovies getMovies;
-  final GetTvshows getTvshows;
-  SearchBloc({required this.getMovies, required this.getTvshows})
-    : super(InitialSearchState()) {
-    on<GetRecommEvent>((event, emit) async {
-      emit(LoadingRecommState());
-      await Future.delayed(Duration(seconds: 3));
+part 'search_bloc_event.dart';
+part 'search_bloc_state.dart';
+
+class SearchBlocBloc extends Bloc<SearchBlocEvent, SearchBlocState> {
+  final SearchMovies searchMovies;
+  final SearchTv searchTv;
+  SearchBlocBloc({required this.searchMovies, required this.searchTv})
+    : super(SearchBlocInitial()) {
+    on<SearchMoviesShows>((event, emit) async {
+      if (event.query.trim().isNotEmpty) {
+        emit(LoadingSearched());
+      final movieData = await searchMovies(event.query);
+      final tvData = await searchTv(event.query);
       List<Movie> movies = [];
-      List<Tvshow> tvShows = [];
-      final moviesResponse = await getMovies(MovieCategory.nowPlaying);
-      final showsResponse = await getTvshows(TvshowCategory.popular);
-      moviesResponse.fold((failure) {}, (success) {
+      List<Tvshow> tvshows = [];
+
+      movieData.fold((failure) {}, (success) {
         movies = success;
       });
-      showsResponse.fold((failure) {}, (success) {
-        tvShows = success;
+
+      tvData.fold((failure) {}, (success) {
+        tvshows = success;
       });
 
-      if (movies.isNotEmpty || tvShows.isNotEmpty) {
-        emit(LoadedRecommMoviesShows(movies: movies, tvShows: tvShows));
+      if (movies.isEmpty && tvshows.isEmpty) {
+        emit(LoadedSearchFailure(message: 'Cannot find movies an shows'));
       } else {
-        emit(RecommFailure());
+        emit(LoadedSearched(movies: movies, tvShows: tvshows));
+      }
       }
     });
-    on<IsSearching>((event, emit) {
-      if (event.query.isNotEmpty) {
-        emit(IsSearchingState());
-      } else {
-        emit(InitialSearchState());
-      }
-    });
+
+    on<ResetSearch>((event, emit) => emit(SearchBlocInitial()),);
   }
 }

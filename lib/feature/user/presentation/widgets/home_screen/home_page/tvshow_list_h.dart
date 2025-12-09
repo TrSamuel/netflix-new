@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/api/api_const.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv/tv_show.dart';
 
 class TvshowListH extends StatelessWidget {
   final String label;

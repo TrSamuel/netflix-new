@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflixclonenew/core/api/api_const.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/description_new_hot.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/title_and_actions.dart';
 

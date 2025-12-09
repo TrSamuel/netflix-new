@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
 
 part 'movie_model.g.dart';
 

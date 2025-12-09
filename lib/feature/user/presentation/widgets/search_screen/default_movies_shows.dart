@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/theme/app_colors.dart';
 import 'package:netflixclonenew/core/utils/const/appfont_sizes.dart';
-import 'package:netflixclonenew/feature/user/presentation/state/bloc/search_bloc/search_bloc.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/bloc/recomitems_bloc/recomm_bloc.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/error_and_retry.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/search_screen/recomm_item_img.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/search_screen/movie_show_name.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/search_screen/play_button.dart';
@@ -19,54 +20,18 @@ class _DefaultMoviesShowsState extends State<DefaultMoviesShows> {
   @override
   void initState() {
     super.initState();
-    context.read<SearchBloc>().add(GetRecommEvent());
+    context.read<RecommBloc>().add(GetRecommEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBloc, SearchState>(
-      buildWhen: (previous, current) {
-        if (current is LoadingRecommState) return true;
-        if (previous is LoadingRecommState &&
-            current is LoadedRecommMoviesShows)
-          return true;
-
-        return false;
-      },
+    return BlocBuilder<RecommBloc, RecommState>(
       builder: (context, state) {
         if (state is LoadingRecommState) {
           return Center(child: ShimmerloaderSearchscreen());
         }
         if (state is! LoadedRecommMoviesShows) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: .center,
-              children: [
-                Text(
-                  """ "Can't Connect" """,
-                  style: TextStyle(
-                    fontSize: AppfontSizes.mediumLarge,
-                    color: AppColors.grey,
-                    fontWeight: .bold,
-                  ),
-                ),
-                SizedBox(height: 25),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<SearchBloc>().add((GetRecommEvent()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    textStyle: TextStyle(
-                      fontSize: AppfontSizes.large,
-                      fontWeight: .bold,
-                    ),
-                    shape: RoundedRectangleBorder(borderRadius: .circular(5)),
-                  ),
-                  child: Text("Retry"),
-                ),
-              ],
-            ),
-          );
+          return ErrorAndRetry(bloc: context.read<RecommBloc>());
         }
         final movies = state.movies;
         final tvShows = state.tvShows;

@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:netflixclonenew/core/errors/main_failure.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
+import 'package:netflixclonenew/feature/user/data/model/tv_show_details_model/tv_show_details_model.dart';
 import 'package:netflixclonenew/feature/user/data/model/tv_show_model/tv_show_model.dart';
 
 sealed class TvshowService {
   Future<Either<MainFailure, List<TvShowModel>>> getTvShows(
     TvshowCategory category,
   );
+    Future<Either<MainFailure, TvShowDetailsModel>> getTvShowDetails(int id);
+      Future<Either<MainFailure, List<TvShowModel>>> searchTvShows(String query);
 }
 
 class TvshowApiService extends TvshowService {
@@ -69,5 +72,56 @@ class TvshowApiService extends TvshowService {
     }
 
     return left(ClientFailure());
+  }
+  
+
+   @override
+  Future<Either<MainFailure, TvShowDetailsModel>> getTvShowDetails(int id) async {
+    try {
+      final response = await dio.get(
+        '/tv/$id',
+        queryParameters: {
+          'append_to_response': 'credits,content_ratings',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return right(
+         TvShowDetailsModel.fromJson((response.data as Map<String, dynamic>)),
+        );
+      }
+
+      if (response.statusCode == 404) {
+        return left(ClientFailure());
+      }
+
+      return left(ServerFailure());
+    } catch (e) {
+      debugPrint('$e');
+      return left(ServerFailure());
+    }
+  }
+  
+  @override
+  Future<Either<MainFailure, List<TvShowModel>>> searchTvShows(String query) async {
+    try {
+      final Response response = await dio.get(
+        '/search/tv',
+        queryParameters: {'query': query},
+      );
+
+      if (response.statusCode == 200) {
+        return right(
+          (response.data['results'] as List).map((m) => TvShowModel.fromJson(m)).toList(),
+        );
+      }
+      if (response.statusCode == 404) {
+        return left(ClientFailure());
+      }
+      return left(ServerFailure());
+    } catch (e) {
+      debugPrint("failed to get search tvshows: $e");
+      return left(ServerFailure());
+    }
   }
 }

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixclonenew/core/utils/movie_category.dart';
 import 'package:netflixclonenew/core/utils/tvshow_category.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/movie.dart';
-import 'package:netflixclonenew/feature/user/domain/entities/tv_show.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/movie/movie.dart';
+import 'package:netflixclonenew/feature/user/domain/entities/tv/tv_show.dart';
+import 'package:netflixclonenew/feature/user/presentation/state/bloc/home_bloc/home_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/bloc/newhot_bloc/new_hot_bloc.dart';
 import 'package:netflixclonenew/feature/user/presentation/state/cubit/new_hot_tab_bar_cubit.dart';
+import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/home_page/error_and_retry.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/coming_soon/coming_soon.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/everyone_watch/everyones_watch.dart';
 import 'package:netflixclonenew/feature/user/presentation/widgets/home_screen/newhot_page/new_hot_app_bar.dart';
@@ -42,7 +44,7 @@ class _NewhotPageState extends State<NewhotPage> {
           return ShimmerLoaderNewhot();
         }
         if (state is! NewHotLoaded) {
-          return SizedBox.shrink();
+          return ErrorAndRetry(bloc: context.read<NewHotBloc>());
         }
         final Map<MovieCategory, List<Movie>> movies = state.movies;
         final Map<TvshowCategory, List<Tvshow>> tvShows = state.tvShows;
